@@ -26,12 +26,24 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testImplementation 'io.github.cdimascio:dotenv-java:2.3.0'
+
+	//mysql
+	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	//dotenv
+	implementation 'me.paulschwarz:spring-dotenv:3.0.0'
 }
 
 tasks.named('test') {
