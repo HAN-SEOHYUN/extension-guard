@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>파일 확장자 차단</title>
+    <meta charset="UTF-8">
+    <!-- jquery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7sL+jC2W6x/s8p62f3/tW5k5K8L3X3T3Z6sS9tBwJg8b6PjA7/3Q0X2tQ8uYk6fB2fG5l1j/tQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<div class="content-wrapper">
+    <div class="content-top">
+        <div class="title-div">
+            <h1>◎ 파일 확장자 차단</h1>
+        </div>
+        <hr class="divider">
+    </div>
+    <div class="content-body">
+        <h2>파일확장자에 따라 특정 형식의 파일을 첨부하거나 전송하지 못하도록 제한</h2>
+        <div class="fix-extension-div">
+            <div class="label">고정 확장자</div>
+            <div class="fix-list-div" id="fixed-list" th:fragment="fixed-list">
+                <div class="fixex-each-div" th:each="extension : ${extensions}">
+                    <th:block th:if="${extension.isFixed()}">
+                        <label>
+                            <input type="checkbox" th:value="${extension.getName()}" th:checked="${extension.isChecked()}" class="fixed-checkbox">
+                            <span th:text="${extension.getName()}"></span>
+                        </label>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+        <div class="custom-extension-div">
+            <div class="label">커스텀 확장자</div>
+            <div class="about-custom-div">
+                <div class="about-custom-input">
+                    <input type="text" placeholder="확장자 입력" id="custom-extension-input" name="custom-extension-input">
+                    <button type="submit" id="submitBtn">+ 추가</button>
+                    <span id="exist-alert-span"></span>
+                </div>
+                <div class="about-custom-list">
+                    <div class="custom-list-div">
+                        <div id="custom-list" th:fragment="custom-list">
+                            <div class="custom-total" th:text="'사용자 지정 확장자 ' + ${customCount} + '/200'"></div>
+                            <th:block th:each="extension : ${extensions}">
+                                <th:block th:unless="${extension.isFixed()}">
+                                    <div class="custom-each-div">
+                                        <span th:text="${extension.getName()}"></span>
+                                        <a href="#" class='delete-btn' th:data-name="${extension.getName()}">
+                                            <i class="fa-solid fa-x"></i>
+                                        </a>
+                                    </div>
+                                </th:block>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- custom JavaScript -->
+<script src="/js/app.js"></script>
+</body>
+</html>
