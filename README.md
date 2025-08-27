@@ -30,7 +30,7 @@
 - **Backend**: Spring Boot `3.5.0`, Spring Web
 - **Frontend**: Thymeleaf, jquery
 - **Database**: MySQL  
-- **기타**: Lombok
+- **기타**: Lombok, cursor AI
 
 ---
 
